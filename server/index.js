@@ -8,8 +8,11 @@ const PORT = process.env.PORT || 3000
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const app = express() 
-app.use(express.static(path.join(__dirname, "public")))
+const app = express();
+
+const publicPath = path.join(__dirname, '..', 'client').replace(/\\/g, '/');
+app.use(express.static(publicPath))
+console.log(publicPath)
 
 const expressServer = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
